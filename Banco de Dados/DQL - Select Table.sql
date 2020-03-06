@@ -12,3 +12,5 @@ SELECT ta.titulo Titulo, u.nome_usuario Usuario, ar.nome_avaliador Avaliador, no
   FROM avaliacao av INNER JOIN tipo_avaliacao ta ON ta.id_avaliacao = av.id_avaliacao
 					INNER JOIN usuario u ON u.id_usuario = av.id_usuario
 					INNER JOIN avaliador ar ON ar.id_avaliador = av.id_avaliador
+
+SELECT id_avaliador, nome_avaliador, funcao FROM avaliador
