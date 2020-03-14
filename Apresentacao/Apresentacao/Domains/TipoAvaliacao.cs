@@ -10,7 +10,7 @@ namespace Apresentacao.Domains
             Avaliacao = new HashSet<Avaliacao>();
         }
 
-        public int IdAvaliacao { get; set; }
+        public int IdTipoAvaliacao { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
 

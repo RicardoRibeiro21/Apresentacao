@@ -12,7 +12,7 @@ CREATE TABLE usuario (
 )
 
 CREATE TABLE tipo_avaliacao (
-	id_avaliacao INT IDENTITY PRIMARY KEY,
+	id_tipo_avaliacao INT IDENTITY PRIMARY KEY,
 	titulo VARCHAR (50) NOT NULL UNIQUE,
 	descricao VARCHAR(250),	
 )
@@ -24,10 +24,11 @@ CREATE TABLE avaliador(
 )
 
 CREATE TABLE avaliacao (
-	id_avaliacao INT FOREIGN KEY REFERENCES tipo_avaliacao(id_avaliacao),
-	id_usuario INT FOREIGN KEY REFERENCES usuario(id_usuario),
+	id_avaliacao INT IDENTITY PRIMARY KEY,
+	id_tipo_avaliacao INT FOREIGN KEY REFERENCES tipo_avaliacao(id_tipo_avaliacao) NOT NULL,
+	id_usuario INT FOREIGN KEY REFERENCES usuario(id_usuario) NOT NULL,
 	nota DECIMAL NOT NULL,
-	id_avaliador INT FOREIGN KEY REFERENCES avaliador(id_avaliador)
+	id_avaliador INT FOREIGN KEY REFERENCES avaliador(id_avaliador) NOT NULL
 )
 
 -- Comando para deletar tabelas 

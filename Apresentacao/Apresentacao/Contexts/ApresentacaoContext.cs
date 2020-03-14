@@ -34,7 +34,8 @@ namespace Apresentacao.Contexts
         {
             modelBuilder.Entity<Avaliacao>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdAvaliacao)
+                    .HasName("PK__avaliaca__272BC05D2C831BAE");
 
                 entity.ToTable("avaliacao");
 
@@ -42,26 +43,31 @@ namespace Apresentacao.Contexts
 
                 entity.Property(e => e.IdAvaliador).HasColumnName("id_avaliador");
 
+                entity.Property(e => e.IdTipoAvaliacao).HasColumnName("id_tipo_avaliacao");
+
                 entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
 
                 entity.Property(e => e.Nota)
                     .HasColumnName("nota")
                     .HasColumnType("decimal(18, 0)");
 
-                entity.HasOne(d => d.IdAvaliacaoNavigation)
-                    .WithMany(p => p.Avaliacao)
-                    .HasForeignKey(d => d.IdAvaliacao)
-                    .HasConstraintName("FK__avaliacao__id_av__6383C8BA");
-
                 entity.HasOne(d => d.IdAvaliadorNavigation)
                     .WithMany(p => p.Avaliacao)
                     .HasForeignKey(d => d.IdAvaliador)
-                    .HasConstraintName("FK__avaliacao__id_av__656C112C");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__avaliacao__id_av__0C85DE4D");
+
+                entity.HasOne(d => d.IdTipoAvaliacaoNavigation)
+                    .WithMany(p => p.Avaliacao)
+                    .HasForeignKey(d => d.IdTipoAvaliacao)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__avaliacao__id_ti__0A9D95DB");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Avaliacao)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__avaliacao__id_us__6477ECF3");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__avaliacao__id_us__0B91BA14");
             });
 
             modelBuilder.Entity<Avaliador>(entity =>
@@ -92,16 +98,16 @@ namespace Apresentacao.Contexts
 
             modelBuilder.Entity<TipoAvaliacao>(entity =>
             {
-                entity.HasKey(e => e.IdAvaliacao)
-                    .HasName("PK__tipo_ava__272BC05DC8AE2526");
+                entity.HasKey(e => e.IdTipoAvaliacao)
+                    .HasName("PK__tipo_ava__A6EA1D9A07819E6C");
 
                 entity.ToTable("tipo_avaliacao");
 
                 entity.HasIndex(e => e.Titulo)
-                    .HasName("UQ__tipo_ava__38FA640F139699EE")
+                    .HasName("UQ__tipo_ava__38FA640FB3F50DE5")
                     .IsUnique();
 
-                entity.Property(e => e.IdAvaliacao).HasColumnName("id_avaliacao");
+                entity.Property(e => e.IdTipoAvaliacao).HasColumnName("id_tipo_avaliacao");
 
                 entity.Property(e => e.Descricao)
                     .HasColumnName("descricao")
