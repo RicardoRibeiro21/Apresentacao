@@ -12,7 +12,7 @@ namespace Apresentacao.Interfaces
         /// Lista as avaliações de um usuário passando o id
         /// </summary>
         /// <returns>Lista de avaliações de um usuário</returns>
-        List<Avaliacao> GetAvaliacoesUsuario (int idUsuario);
+        List<Avaliacao> GetAvaliacoesUsuario(int idUsuario);
 
         /// <summary>
         /// Lista as avalicaoes referente ao avaliador detentor do id

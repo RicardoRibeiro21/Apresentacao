@@ -1,3 +1,8 @@
 Scaffold-DbContext "Data Source=.\SQLEXPRESS; initial catalog = Projeto;user id = DESKTOP-65B9MRT\Ribeiro; pwd = " Microsoft.EntityFrameworkCore.SqlServer -OutputDir Domains -ContextDir Contexts -Context ApresentacaoContext
 
  Scaffold-DbContext "Data Source=DESKTOP-65B9MRT\SQLEXPRESS01;Initial Catalog=projeto;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Domains -ContextDir Contexts -Context ApresentacaoContext
+
+
+Swashbuckle.Core
+Swashbuckle.Authentication.JwtBearer
+Swashbuckle.Newsofton.

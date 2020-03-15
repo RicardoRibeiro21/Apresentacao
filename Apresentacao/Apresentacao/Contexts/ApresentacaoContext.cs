@@ -18,6 +18,7 @@ namespace Apresentacao.Contexts
 
         public virtual DbSet<Avaliacao> Avaliacao { get; set; }
         public virtual DbSet<Avaliador> Avaliador { get; set; }
+        public virtual DbSet<Funcao> Funcao { get; set; }
         public virtual DbSet<TipoAvaliacao> TipoAvaliacao { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
 
@@ -35,7 +36,7 @@ namespace Apresentacao.Contexts
             modelBuilder.Entity<Avaliacao>(entity =>
             {
                 entity.HasKey(e => e.IdAvaliacao)
-                    .HasName("PK__avaliaca__272BC05D2C831BAE");
+                    .HasName("PK__avaliaca__272BC05DC16C81ED");
 
                 entity.ToTable("avaliacao");
 
@@ -55,44 +56,72 @@ namespace Apresentacao.Contexts
                     .WithMany(p => p.Avaliacao)
                     .HasForeignKey(d => d.IdAvaliador)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__avaliacao__id_av__0C85DE4D");
+                    .HasConstraintName("FK__avaliacao__id_av__2180FB33");
 
                 entity.HasOne(d => d.IdTipoAvaliacaoNavigation)
                     .WithMany(p => p.Avaliacao)
                     .HasForeignKey(d => d.IdTipoAvaliacao)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__avaliacao__id_ti__0A9D95DB");
+                    .HasConstraintName("FK__avaliacao__id_ti__1F98B2C1");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Avaliacao)
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__avaliacao__id_us__0B91BA14");
+                    .HasConstraintName("FK__avaliacao__id_us__208CD6FA");
             });
 
             modelBuilder.Entity<Avaliador>(entity =>
             {
                 entity.HasKey(e => e.IdAvaliador)
-                    .HasName("PK__avaliado__2279801F3DD5EC00");
+                    .HasName("PK__avaliado__2279801FCF1E76F5");
 
                 entity.ToTable("avaliador");
 
                 entity.HasIndex(e => e.NomeAvaliador)
-                    .HasName("UQ__avaliado__1781D57FAA575A4B")
+                    .HasName("UQ__avaliado__1781D57F23B5E143")
                     .IsUnique();
 
                 entity.Property(e => e.IdAvaliador).HasColumnName("id_avaliador");
 
-                entity.Property(e => e.Funcao)
-                    .IsRequired()
-                    .HasColumnName("funcao")
-                    .HasMaxLength(250)
-                    .IsUnicode(false);
+                entity.Property(e => e.IdFuncao).HasColumnName("id_funcao");
+
+                entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
 
                 entity.Property(e => e.NomeAvaliador)
                     .IsRequired()
                     .HasColumnName("nome_avaliador")
                     .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdFuncaoNavigation)
+                    .WithMany(p => p.Avaliador)
+                    .HasForeignKey(d => d.IdFuncao)
+                    .HasConstraintName("FK__avaliador__id_fu__1CBC4616");
+
+                entity.HasOne(d => d.IdUsuarioNavigation)
+                    .WithMany(p => p.Avaliador)
+                    .HasForeignKey(d => d.IdUsuario)
+                    .HasConstraintName("FK__avaliador__id_us__1BC821DD");
+            });
+
+            modelBuilder.Entity<Funcao>(entity =>
+            {
+                entity.HasKey(e => e.IdFuncao)
+                    .HasName("PK__funcao__2544794769A0119C");
+
+                entity.ToTable("funcao");
+
+                entity.HasIndex(e => e.Funcao1)
+                    .HasName("UQ__funcao__34BB1DA64F38005B")
+                    .IsUnique();
+
+                entity.Property(e => e.IdFuncao).HasColumnName("id_funcao");
+
+                entity.Property(e => e.Funcao1)
+                    .IsRequired()
+                    .HasColumnName("funcao")
+                    .HasMaxLength(200)
                     .IsUnicode(false);
             });
 

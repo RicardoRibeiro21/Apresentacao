@@ -19,8 +19,9 @@ CREATE TABLE tipo_avaliacao (
 
 CREATE TABLE avaliador(
 	id_avaliador INT IDENTITY PRIMARY KEY,
+	id_usuario INT FOREIGN KEY REFERENCES usuario(id_usuario),
 	nome_avaliador VARCHAR(250) NOT NULL UNIQUE,
-	funcao VARCHAR(250) NOT NULL
+	id_funcao INT FOREIGN KEY REFERENCES funcao(id_funcao)
 )
 
 CREATE TABLE avaliacao (
@@ -29,6 +30,11 @@ CREATE TABLE avaliacao (
 	id_usuario INT FOREIGN KEY REFERENCES usuario(id_usuario) NOT NULL,
 	nota DECIMAL NOT NULL,
 	id_avaliador INT FOREIGN KEY REFERENCES avaliador(id_avaliador) NOT NULL
+)
+
+CREATE TABLE funcao (
+	id_funcao INT IDENTITY PRIMARY KEY,
+	funcao VARCHAR(200) NOT NULL UNIQUE
 )
 
 -- Comando para deletar tabelas 

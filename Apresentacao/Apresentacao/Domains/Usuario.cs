@@ -8,6 +8,7 @@ namespace Apresentacao.Domains
         public Usuario()
         {
             Avaliacao = new HashSet<Avaliacao>();
+            Avaliador = new HashSet<Avaliador>();
         }
 
         public int IdUsuario { get; set; }
@@ -17,5 +18,6 @@ namespace Apresentacao.Domains
         public string SenhaUsuario { get; set; }
 
         public virtual ICollection<Avaliacao> Avaliacao { get; set; }
+        public virtual ICollection<Avaliador> Avaliador { get; set; }
     }
 }

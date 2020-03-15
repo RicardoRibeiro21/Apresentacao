@@ -14,16 +14,27 @@ namespace Apresentacao.Interfaces
         /// <returns>Retorna uma lista de usuários</returns>
         List<Usuario> GetUsuarios(string pCrit);
         /// <summary>
-        /// 
+        /// Busca um usuário pelo id passado como parâmetro
         /// </summary>
         /// <param name="idUsuario"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Objeto Usuario</returns>
         Usuario GetById(int idUsuario);
-
+        /// <summary>
+        /// Cadastra um novo usuario
+        /// </summary>
+        /// <param name="usuario"></param>
         void Cadastrar(Usuario usuario);
 
+        /// <summary>
+        /// Deleta um usuário a partir do id fornecido
+        /// </summary>
+        /// <param name="idUsuario"></param>
         void Deletar(int idUsuario);
 
+        /// <summary>
+        /// Altera um usuário a partir do id fornecido
+        /// </summary>
+        /// <param name="idUsuario"></param>
         void Alterar(int idUsuario);
     }
 }
